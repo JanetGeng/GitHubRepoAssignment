@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Pokemon</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+
+            $(document).ready(function(){
+
+              for (var i = 1; i < 151; i++) {
+                //var address = "http://pokeapi.co/media/img"+i+".png";
+                $('.photos').append('<img id="'+i+'" src= "http://pokeapi.co/media/img/'+i+'.png">');
+              }
+                $(document).on('click','img',function(){
+                    
+                    var id = this.id;
+                    $.get('http://pokeapi.co/api/v1/pokemon/'+id, function(res){
+                       
+                    var name = res['name'];
+                    var type = res['types'];
+                    var height =res['height'];
+                    var weight =res['weight'];
+                   
+                   var html_str="";
+                   html_str += '<h4>Name:'+name+'</h4>';
+                   html_str += '<div id="img"><img src="http://pokeapi.co/media/img/'+id+'.png"></div>';
+                   html_str += "<h4>Height:</h4>";
+                   html_str += res['height'];
+                   html_str += "<h4>Weight</h4>";
+                   html_str += res['weight'];
+                   html_str += "<h4>Types</h4>";
+                   html_str += "<ul>";
+                   for (var k = 0; k < res['types'].length; k++) {
+                       html_str += "<li>" + res['types'][k]['name'] + "</li>";
+                   }
+                   html_str += "</ul>";
+
+                    $('.info').html(html_str);
+                    $('html, body').animate({scrollTop: 0}, 600);
+                    
+                },'jsonp');
+              
+
+                });
+              
+
+            });
+
+        </script>
+        <style type="text/css">
+            * {
+                font-family: sans-serif;
+            }
+            .photos {
+                width: 70%;
+                float:left;
+                
+            }
+            .info {
+                width:20%;
+                height: 600px;
+                border: 20px solid red;
+                float: right;
+            }
+            img{
+                height: 100px;
+                width: 100px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="photos">
+        </div>
+        <p class="info">
+            
+        </p>
+
+</body>
+</html>
