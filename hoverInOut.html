@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hover In and Out</title>
+        <link rel="stylesheet" href="css/hover.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+            var HTMLstring = "";
+            for(var i = 0; i < 4; i++){
+                HTMLstring += '<img src="img/1.jpg" alt="img/2.jpg" temp= "img/1.jpg">'
+            }
+            
+            $(document).ready(function(){
+                $(".container").append(HTMLstring);
+
+                $("img").hover(function(){
+                    $(this).attr('src',$(this).attr('alt'));
+                }, function(){
+                    $(this).attr('src', $(this).attr('temp'));
+                });
+
+               
+            })
+        </script>
+    </head>
+      <div class="container">
+
+        </div>
+    </body>
+</html>

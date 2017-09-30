@@ -1,0 +1,20 @@
+* {
+	margin: 10px;
+	padding: 0px;
+}
+table {
+    border: 1px solid #DD84DD;
+    border-collapse: collapse;
+    height: 50px;
+    text-align: left;
+}
+th{
+    border: none;
+}
+
+
+.underline{
+    border-bottom: 1px solid black;
+    width: 50%;
+    
+}

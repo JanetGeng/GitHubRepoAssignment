@@ -1,0 +1,11 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+img {
+	width: 25%;
+	height: auto;
+	max-height: 350px;
+	max-width: 525px;
+}
