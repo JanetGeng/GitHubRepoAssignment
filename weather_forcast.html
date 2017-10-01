@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Forcast</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('form').submit(function () {
+                // your code here (build up your url)
+                var key = '3eaf8ae50bfd31300f917ad47334ed24';
+                var city = $('#city').val();
+                var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${key}`;
+                $.get(url, function (res) {
+                    // your code here
+                    var html_str = '';
+                    html_str += `<p>${res['name']}:${res['weather'][0]['description']}</p>`;
+                    html_str +=`<p>Temperature ${res['main']['temp']}F</p>`;
+                    //  html += `<p> Coord: ${res['coord'].lat}, ${res['coord'].lon}`
+                    $('.answer').html(html_str);
+
+                }, 'json');
+                // don't forget to return false so the page doesn't refresh
+                return false;
+            });
+        });
+    </script>
+    <style type="text/css">
+        * {
+            font-family: sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+    <form>
+        <input type="text" name="search_box" id="city">
+        <input type="submit" name="submit"/>
+    </form>
+    <div class=" answer "></div>
+</body>
+
+</html>
